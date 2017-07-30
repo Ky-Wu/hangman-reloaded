@@ -24,15 +24,21 @@ class Hangman
   end
 
   def process(guess)
+    unless valid_input?(guess)
+      $message = "Please guess a letter you have not guessed before."
+      return
+    end
     letters = @word.split('')
     letters.each_with_index do |letter, index|
       if letter.downcase == guess
         @display[index] = letter
+        $message = "You got a letter right!"
       end
     end
     unless letters.include?(guess)
       @countdown -= 1
       @incorrect_letters << guess
+      $message = "You didn't get that letter right."
     end
   end
 
@@ -46,17 +52,28 @@ class Hangman
     end
   end
 
+  def valid_input?(input)
+    if input.length != 1 || @incorrect_letters.include?(input) ||
+      !('a'..'z').include?(input.downcase)
+      false
+    else
+      true
+    end
+  end
+
 end
 game = Hangman.new
 get '/' do
   guess = params["guess"]
   game.process(guess)
+  if game.game_over
+    game = Hangman.new
+  end
   erb :index, :locals => {
     word: game.word,
     incorrect_letters: game.incorrect_letters,
     countdown: game.countdown,
     display: game.display,
     message: $message,
-    game_over: game.game_over
   }
 end
