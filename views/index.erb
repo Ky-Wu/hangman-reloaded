@@ -14,7 +14,12 @@
       <input type='text' name='guess' />
       <input type='submit' value="Guess!" />
     </form>
-    <p>Incorrect letters: <%= incorrect_letters.join("  ") %> </p>
-    <p>Games won this server lifetime: <%= hangmen_won %></p>
+    <p>Incorrect letters:</p>
+    <p><%= incorrect_letters.join("  ") %> </p>
+    <p><%= hangmen_won %> game
+      <% if hangmen_won > 1 %>
+        s
+      <% end %>
+    won this server lifetime. </p>
   </body>
 </html>

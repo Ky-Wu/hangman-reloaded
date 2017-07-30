@@ -23,7 +23,11 @@ class Hangman
   end
 
   def process(guess)
-    unless valid_input?(guess)
+    if guess.nil?
+      $message = "Welcome to Hangman! Guess one letter at a time and"\
+                 " if you guess the whole word, you win!"
+      return
+    elsif !valid_input?(guess)
       $message = "Please guess a letter you have not guessed before."
       return
     end
