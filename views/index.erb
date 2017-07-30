@@ -16,9 +16,11 @@
     </form>
     <p>Incorrect letters:</p>
     <p><%= incorrect_letters.join("  ") %> </p>
-    <p><%= hangmen_won %> game
-      <% if hangmen_won > 1 %>
-        s
+    <p><%= hangmen_won %>
+      <% if hangmen_won == 1 %>
+      game
+      <% else %>
+      games
       <% end %>
     won this server lifetime. </p>
   </body>
