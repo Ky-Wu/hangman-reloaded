@@ -1,7 +1,6 @@
 require 'sinatra'
-require 'sinatra/reloader'
+require 'sinatra/reloader' if development?
 
-$message = ""
 @@hangmen_won = 0
 class Hangman
   attr_accessor :word, :incorrect_letters, :display, :countdown
@@ -66,9 +65,10 @@ class Hangman
       true
     end
   end
-
 end
-game = Hangman.new
+
+game ||= Hangman.new
+
 get '/' do
   guess = params["guess"]
   game.process(guess)
