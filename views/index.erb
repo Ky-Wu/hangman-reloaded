@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/hangman.css" />
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
   </head>
   <body>
     <p><%= message %></p>
@@ -11,6 +13,6 @@
       <input type='submit' value="Guess!" />
     </form>
     <p>Incorrect letters: <%= incorrect_letters.join("  ") %> </p>
-    <p>Total hangmen won this server lifetime: <%= hangmen_won %></p>
+    <p>Games won this server lifetime: <%= hangmen_won %></p>
   </body>
 </html>
