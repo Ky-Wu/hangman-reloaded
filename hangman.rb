@@ -46,8 +46,9 @@ class Hangman
       $message = "You ran out of guesses!"
       return true
     elsif @word == @display.join
-      $message = "You won! Try to guess the new word."
-      @@hangman_won += 1
+      $message = "You correctly guessed the word #{@word}! "\
+                 "Try to guess the new word."
+      @@hangmen_won += 1
       return true
     end
   end
@@ -76,5 +77,6 @@ get '/' do
     countdown: game.countdown,
     display: game.display,
     message: $message,
+    hangmen_won: @@hangmen_won
   }
 end

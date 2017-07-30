@@ -4,12 +4,13 @@
   </head>
   <body>
     <p><%= message %></p>
-    <p><%= word %> <%= display.join(" ") %></p>
+    <p><%= display.join(" ") %></p>
     <p><%= countdown %> turns remaining.</p>
     <form>
       <input type='text' name='guess' />
       <input type='submit' value="Guess!" />
     </form>
     <p>Incorrect letters: <%= incorrect_letters.join("  ") %> </p>
+    <p>Total hangmen won this server lifetime: <%= hangmen_won %></p>
   </body>
 </html>
