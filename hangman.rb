@@ -2,9 +2,8 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 $message = ""
-
+@@hangmen_won = 0
 class Hangman
-  @@hangmen_won = 0
   attr_accessor :word, :incorrect_letters, :display, :countdown
   def initialize
     generate_word
@@ -48,13 +47,15 @@ class Hangman
       return true
     elsif @word == @display.join
       $message = "You won! Try to guess the new word."
+      @@hangman_won += 1
       return true
     end
   end
 
   def valid_input?(input)
+    input = input.downcase
     if input.length != 1 || @incorrect_letters.include?(input) ||
-      !('a'..'z').include?(input.downcase)
+      @display.include?(input) || !('a'..'z').include?(input)
       false
     else
       true
